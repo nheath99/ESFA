@@ -1,0 +1,48 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  GOV.UK Prototype Kit
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-breadcrumbs">
+    <ol class="govuk-breadcrumbs__list">
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="../../accounts">Your Accounts</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="../{{ employer.id }}">{{ employer.name }}</a>
+      </li>
+        <li class="govuk-breadcrumbs__list-item" aria-current="page">Apprentices</li>
+    </ol>
+</div>
+      
+<h1 class="govuk-heading-xl">
+  Apprentices
+</h1>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-one-third">
+        <a href="apprentices/add" class="govuk-heading-m">Add an apprentice</a>
+        <p class="govuk-body">
+            Add apprentices to a new cohort or ask your training provider to add them.
+        </p>
+        <a href="apprentices/manage" class="govuk-heading-m">Manage your apprentices</a>
+        <p class="govuk-body">
+            View approved apprentices, update details of existing apprentices or stop and pause payments to training providers.
+        </p>
+  </div>
+  <div class="govuk-grid-column-one-third">
+    <a href="apprentices/cohorts" class="govuk-heading-m">Your cohorts</a>
+    <p class="govuk-body">
+        Review, edit, approve and add more apprentices to cohorts you've already started.
+    </p>
+    <a href="#" class="govuk-heading-m">Set payment order</a>
+    <p class="govuk-body">
+        View and change the order in which your providers are paid from your available funds.
+    </p>
+  </div>
+</div>
+
+{% endblock %}

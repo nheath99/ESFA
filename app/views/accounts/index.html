@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  GOV.UK Prototype Kit
+{% endblock %}
+
+{% block content %}
+
+<h1 class="govuk-heading-xl">Your Accounts</h1>
+
+<p class="govuk-body">Select an account or add a new one</p>
+
+<table class="govuk-table">        
+    <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+            <th class="govuk-table__header" scope="col">Account name</th>
+            <th class="govuk-table__header" scope="col">What you can do</th>
+            <th class="govuk-table__header" scope="col"></th>
+        </tr>
+    </thead>
+    <tbody class="govuk-table__body">
+        <tr class="govuk-table__row">
+            <td class="govuk-table__cell" scope="row">Nice Employer</td>
+            <td class="govuk-table__cell">Accept agreements, view information and manage PAYE schemes, organisations, apprentices and team members</td>
+            <td class="govuk-table__cell"><a href="/accounts/XJBMNV" class="govuk-link">Open</a></td>
+        </tr>
+        <tr class="govuk-table__row">
+            <td class="govuk-table__cell" scope="row">Good Employer</td>
+            <td class="govuk-table__cell">Accept agreements, view information and manage PAYE schemes, organisations, apprentices and team members</td>
+            <td class="govuk-table__cell"><a href="/accounts/PPJTRA" class="govuk-link">Open</a></td>
+        </tr>
+    </tbody>
+    </table>
+
+  {{ govukButton({
+    text: "Add new account",
+    href: "#"
+  }) }}
+
+{% endblock %}

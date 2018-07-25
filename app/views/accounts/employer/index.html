@@ -1,0 +1,60 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  GOV.UK Prototype Kit
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-breadcrumbs">
+    <ol class="govuk-breadcrumbs__list">
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="../accounts">Your Accounts</a>
+      </li>
+        <li class="govuk-breadcrumbs__list-item" aria-current="page">{{ employer.name }}</li>
+    </ol>
+</div>
+
+<h1 class="govuk-heading-xl">
+  {{ employer.name }}
+  <span class="govuk-caption-xl">Account ID: {{ employer.id }}</span>
+</h1>
+
+<hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible">
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+      <div class="govuk-grid-row">
+          <div class="govuk-grid-column-one-half">            
+            <a href="#" class="govuk-heading-m">Your Team</a>
+            <p class="govuk-body">
+              Control what your team can do and invite new team members.
+            </p>
+            <a href="#" class="govuk-heading-m">Your organisations and agreements</a>
+            <p class="govuk-body">
+              Add your organisations that will make contracts with training providers.
+            </p>
+            <a href="{{ employer.id }}/apprentices" class="govuk-heading-m">Apprentices</a>
+            <p class="govuk-body">
+              Add apprentices, update details of existing apprentices and authorise payments to training providers.
+            </p>
+          </div>
+          <div class="govuk-grid-column-one-half">
+            <a href="{{ employer.id }}/finance" class="govuk-heading-m">Finance</a>
+            <p class="govuk-body">
+              View your financial transactions, connect with other employers and send or receive transfer funds.
+            </p>
+            <a href="#" class="govuk-heading-m">PAYE Schemes</a>
+            <p class="govuk-body">
+                Add or remove PAYE schemes.
+            </p>
+            <a href="#" class="govuk-heading-m">Find apprenticeship training</a>
+            <p class="govuk-body">
+              Search for apprenticeships and see details of approved providers who can deliver the training.
+            </p>
+          </div>
+        </div>
+  </div>
+</div>
+
+{% endblock %}

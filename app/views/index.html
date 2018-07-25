@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  GOV.UK Prototype Kit
+{% endblock %}
+
+{% block content %}
+
+{{ govukPhaseBanner({
+  tag: {
+    text: "alpha"
+  }
+}) }}
+
+<p class="govuk-body">
+  <a href="#" class="govuk-back-link">Back</a>
+</p>
+
+<p class="govuk-body">
+  <a href="sign-in" role="button" class="govuk-button govuk-button--start">
+    Start now
+  </a>
+</p>   
+
+{% endblock %}

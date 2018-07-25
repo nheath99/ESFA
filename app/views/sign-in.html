@@ -1,0 +1,49 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  GOV.UK Prototype Kit
+{% endblock %}
+
+{% block content %}
+
+{{ govukPhaseBanner({
+  tag: {
+    text: "alpha"
+  }
+}) }}
+
+<a href="#" class="govuk-back-link">Back</a>
+
+<h1 class="govuk-heading-xl">
+  Sign in        
+</h1>
+
+<p class="govuk-body-l">
+  Sign in or <a href="#">create an account</a> to manage your apprenticeship funds.
+</p>
+
+<form method="POST">
+    <div class="govuk-form-group">
+        <label class="govuk-label govuk-!-width-one-half" for="email">
+          Email Address
+        </label>
+        <input class="govuk-input govuk-!-width-one-half" id="email" name="email" type="text">
+    </div>
+
+    <div class="govuk-form-group">
+        <label class="govuk-label govuk-!-width-one-half" for="password">
+          Password
+        </label>
+        <input class="govuk-input govuk-!-width-one-half" id="password" name="password" type="password">
+    </div>
+
+    <button type="submit" class="govuk-button">
+        Sign in
+    </button>
+</form>
+
+<p class="govuk-body">
+  <a href="#">Forgotten your password?</a>
+</p>
+
+{% endblock %}
