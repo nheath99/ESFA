@@ -10,13 +10,11 @@
     <div class="govuk-grid-column-one-third">
         <h2 class="govuk-heading-m">Search for an apprentice</h2>
         <form>
-            <input class="govuk-input" id="email" name="email" type="text" style="margin-bottom: 5px;" />
+            <input class="govuk-input" id="Search" name="Search" type="text" style="margin-bottom: 5px;" value="{{ data['Search'] }}" />
             <button type="submit" class="govuk-button btn-block" style="margin-bottom: 22px;">Search</button>
-        </form>
 
-        <hr>
+            <hr>
 
-        <form>
             <fieldset class="govuk-fieldset">
                 <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">Filter Apprentices</legend>
 
@@ -29,13 +27,19 @@
                     <div class="options-container">
                         <div class="item">
                             <label for="Status-Live" class="selection-button-checkbox">
-                                <input name="Status" value="Live" class="" id="Status-Live" type="checkbox" />
+                                <input type="checkbox" name="Status" value="Live" class="" id="Status-Live" {{ checked( 'Status', 'Live') }} />
                                 <span>Live</span>
                             </label>
                         </div>
                         <div class="item">
+                            <label for="Status-Paused" class="selection-button-checkbox">
+                                <input type="checkbox" name="Status" value="Paused" class="" id="Status-Paused" {{ checked( 'Status', 'Paused') }} />
+                                <span>Paused</span>
+                            </label>
+                        </div>
+                        <div class="item">
                             <label for="Status-Stopped" class="selection-button-checkbox">
-                                <input name="Status" value="Stopped" class="" id="Status-Stopped" type="checkbox" />
+                                <input name="Status" value="Stopped" class="" id="Status-Stopped" type="checkbox" {{ checked( 'Status', 'Stopped') }} />
                                 <span>Stopped</span>
                             </label>
                         </div>
@@ -50,13 +54,15 @@
                     <div class="options-container">
                         <div class="item">
                             <label for="RecordStatus-ChangesPending" class="selection-button-checkbox">
-                                <input name="Status" value="Live" class="" id="RecordStatus-ChangesPending" type="checkbox" />
+                                <input name="Alerts" value="ChangesPending" class="" id="RecordStatus-ChangesPending" type="checkbox" {{ checked(
+                                    'Alerts', 'ChangesPending') }} />
                                 <span>Changes pending</span>
                             </label>
                         </div>
                         <div class="item">
                             <label for="RecordStatus-ChangesForReview" class="selection-button-checkbox">
-                                <input name="Status" value="Stopped" class="" id="RecordStatus-ChangesForReview" type="checkbox" />
+                                <input name="Alerts" value="ChangesForReview" class="" id="RecordStatus-ChangesForReview" type="checkbox" {{ checked(
+                                    'Alerts', 'ChangesForReview') }} />
                                 <span>Changes for review</span>
                             </label>
                         </div>
@@ -68,34 +74,40 @@
                             Training Courses
                         </div>
                     </div>
-                    <div class="options-container">
+                    <div class="options-container">  
+                        <div class="item">
+                            <label for="Course-9811" class="selection-button-checkbox">
+                                <input name="TrainingCourses" value="9811" class="" id="Course-9811" type="checkbox" {{ checked( 'TrainingCourses', '9811') }} />
+                                <span>Electrician, Level: 2</span>
+                            </label>
+                        </div>                      
                         <div class="item">
                             <label for="Course-431-2-3" class="selection-button-checkbox">
-                                <input name="Status" value="Live" class="" id="Course-431-2-3" type="checkbox" />
+                                <input name="TrainingCourses" value="431-2-3" class="" id="Course-431-2-3" type="checkbox" {{ checked( 'TrainingCourses', '431-2-3') }} />
                                 <span>Bus and Coach Engineering and Maintenance: Body, Level: 3</span>
                             </label>
                         </div>
                         <div class="item">
                             <label for="Course-34" class="selection-button-checkbox">
-                                <input name="Status" value="Stopped" class="" id="Course-34" type="checkbox" />
+                                <input name="TrainingCourses" value="34" class="" id="Course-34" type="checkbox" {{ checked( 'TrainingCourses', '34') }} />
                                 <span>Able seafarer (deck), Level: 2 (Standard)</span>
                             </label>
                         </div>
                         <div class="item">
                             <label for="Course-454-3-1" class="selection-button-checkbox">
-                                <input name="Status" value="Stopped" class="" id="Course-454-3-1" type="checkbox" />
+                                <input name="TrainingCourses" value="454-3-1" class="" id="Course-454-3-1" type="checkbox" {{ checked( 'TrainingCourses', '454-3-1') }} />
                                 <span>Accounting, Level: 2</span>
                             </label>
                         </div>
                         <div class="item">
                             <label for="Course-454-20-1" class="selection-button-checkbox">
-                                <input name="Status" value="Stopped" class="" id="Course-454-20-1" type="checkbox" />
+                                <input name="TrainingCourses" value="454-20-1" class="" id="Course-454-20-1" type="checkbox" {{ checked('TrainingCourses', '454-20-1') }} />
                                 <span>Accounting, Level: 4</span>
                             </label>
                         </div>
                         <div class="item">
                             <label for="Course-274" class="selection-button-checkbox">
-                                <input name="Status" value="Stopped" class="" id="Course-274" type="checkbox" />
+                                <input name="TrainingCourses" value="274" class="" id="Course-274" type="checkbox" {{ checked( 'TrainingCourses', '274') }} />
                                 <span>Abattoir Worker, Level: 2 (Standard)</span>
                             </label>
                         </div>
@@ -110,13 +122,13 @@
                     <div class="options-container">
                         <div class="item">
                             <label for="Provider-10000534" class="selection-button-checkbox">
-                                <input name="Status" value="Live" class="" id="Provider-10000534" type="checkbox" />
+                                <input name="Provider" value="10000534" class="" id="Provider-10000534" type="checkbox" {{ checked( 'Provider', '10000534') }} />
                                 <span>BARNFIELD COLLEGE</span>
                             </label>
                         </div>
                         <div class="item">
                             <label for="Provider-10005077" class="selection-button-checkbox">
-                                <input name="Status" value="Stopped" class="" id="Provider-10005077" type="checkbox" />
+                                <input name="Provider" value="10005077" class="" id="Provider-10005077" type="checkbox" {{ checked( 'Provider', '10005077') }} />
                                 <span>PETERBOROUGH REGIONAL COLLEGE</span>
                             </label>
                         </div>
@@ -124,7 +136,7 @@
                 </div>
             </fieldset>
             <button type="submit" class="govuk-button btn-block">Filter</button>
-            <a href="#" onclick="window.location.reload()">Reset</a>
+            <a href="#" onclick="window.location.href = window.location.origin + window.location.pathname;">Reset</a>
         </form>
     </div>
     <div class="govuk-grid-column-two-thirds">
@@ -145,16 +157,18 @@
                 <tr class="govuk-table__row">
                     <td class="govuk-table__cell nowrap" scope="row">{{ item.name }}</td>
                     <td class="govuk-table__cell" scope="row">{{ item.unique_learner_number }}</td>
-                    <td class="govuk-table__cell nowrap" scope="row">{{ item.dob }}</td>
+                    <td class="govuk-table__cell nowrap" scope="row">{{ item.dob | date('D MMM YYYY') }}</td>
                     <td class="govuk-table__cell" scope="row">{{ item.status }}</td>
-                    <td class="govuk-table__cell" scope="row"></td>
+                    <td class="govuk-table__cell" scope="row">{{ item.alert }}</td>
                     <td class="govuk-table__cell" scope="row">
                         <a href="manage/{{item.id}}">View</a>
                     </td>
                 </tr>
                 {% else %}
                 <tr class="govuk-table__row">
-                    <td class="govuk-table__cell nowrap" colspan="6" scope="row"><i>No data</i></td>
+                    <td class="govuk-table__cell nowrap" colspan="6" scope="row">
+                        <i>No data</i>
+                    </td>
                 </tr>
                 {% endfor %}
             </tbody>

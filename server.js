@@ -10,6 +10,7 @@ const express = require('express')
 const nunjucks = require('nunjucks')
 const session = require('express-session')
 const cookieParser = require('cookie-parser')
+const dateFilter = require('nunjucks-date-filter');
 
 // Local dependencies
 const config = require('./app/config.js')
@@ -84,6 +85,7 @@ var nunjucksAppEnv = nunjucks.configure(appViews, {
 
 // Add Nunjucks filters
 utils.addNunjucksFilters(nunjucksAppEnv)
+nunjucksAppEnv.addFilter('date', dateFilter); // add nunjucks date filter https://www.npmjs.com/package/nunjucks-date-filter
 
 // Set views engine
 app.set('view engine', 'html')

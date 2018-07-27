@@ -65,13 +65,13 @@
       <tr class="govuk-table__row">                
         <td class="govuk-table__cell">{{ item.name }}</td>
         <td class="govuk-table__cell">{{ item.unique_learner_number }}</td>
-        <td class="govuk-table__cell">{{ item.dob }}</td>
-        <td class="govuk-table__cell">{{ item.training_start_date }} to {{ item.training_end_date }}</td>
+        <td class="govuk-table__cell">{{ item.dob | date("D MMM YYYY") }}</td>
+        <td class="govuk-table__cell">{{ item.training_start_date | date("MMM YYYY") }} to {{ item.training_end_date | date("MMM YYYY") }}</td>
         <td class="govuk-table__cell">£{{ item.total_cost_of_training }}</td>
         <td class="govuk-table__cell">
             <a href="#">Edit</a>
         </td>
-      </tr>  
+      </tr>
       {% else %}
       <tr class="govuk-table__row">
         <td colspan="6" class="govuk-table__cell" scope="row">No apprentices</td>        
