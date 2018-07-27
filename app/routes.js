@@ -136,6 +136,62 @@ const dummy_cohort_5 = {
   apprentices: [dummy_apprentice_5]
 }
 
+const dummy_transaction_1 = {
+  transactionDate: '20/05/2018',
+  transactionType: 'Levy',
+  payeScheme: '273/AA00001',
+  payrollMonth: 'Apr-18',
+  levyDeclared: '1200000',
+  english_pc: '100',
+  topup_10_pc: '120000',
+  trainingProvider: '',
+  unique_learner_number: '',
+  apprentice: '',
+  apprenticeship_training_course: '',
+  paid_from_levy: 0,
+  your_contribution: 0,
+  government_contribution: 0,
+  total: 1320000
+}
+
+const dummy_transaction_2 = {
+  transactionDate: '20/04/2018',
+  transactionType: 'Levy',
+  payeScheme: '273/AA00001',
+  payrollMonth: 'Mar-18',
+  levyDeclared: '1000000',
+  english_pc: '100',
+  topup_10_pc: '100000',
+  trainingProvider: '',
+  unique_learner_number: '',
+  apprentice: '',
+  apprenticeship_training_course: '',
+  paid_from_levy: 0,
+  your_contribution: 0,
+  government_contribution: 0,
+  total: 1100000
+}
+
+const dummy_transaction_3 = {
+  transactionDate: '20/03/2018',
+  transactionType: 'Levy',
+  payeScheme: '273/AA00001',
+  payrollMonth: 'Feb-18',
+  levyDeclared: '1000000',
+  english_pc: '100',
+  topup_10_pc: '100000',
+  trainingProvider: '',
+  unique_learner_number: '',
+  apprentice: '',
+  apprenticeship_training_course: '',
+  paid_from_levy: 0,
+  your_contribution: 0,
+  government_contribution: 0,
+  total: 1100000
+}
+
+// end dummy data
+
 router.use(function (req, res, next) {
   if (!req.session.cohorts) {
     console.log("Adding cohorts to session");
@@ -149,10 +205,12 @@ router.use(function (req, res, next) {
     console.log("Adding apprentices to session");
     req.session.apprentices = [dummy_apprentice_1, dummy_apprentice_2, dummy_apprentice_3, dummy_apprentice_4, dummy_apprentice_5];
   }
+  if (!req.session.connectionRequests) {
+    console.log("Adding connectionRequests to session");
+    req.session.connectionRequests = [];
+  }
   next();
 })
-
-// End dummy data
 
 // Route index page
 router.get('/', function (req, res) {
@@ -188,6 +246,12 @@ router.param('cohort', function (req, res, next, cohort) {
     cohort.apprentices = req.session.apprentices.filter(a => a.cohort_reference == cohort.reference);
     res.locals.cohort = cohort;
   }
+  next();
+});
+
+router.param('connectionRequest', function (req, res, next, connectionRequest) {
+  res.locals.connectionRequest = req.session.connectionRequests[connectionRequest];
+
   next();
 });
 
@@ -228,6 +292,54 @@ router.get('/accounts/:employer/finance', function (req, res) {
 
 router.get('/accounts/:employer/finance/transactions', function (req, res) {
   res.render('accounts/employer/finance/transactions');
+})
+
+router.get('/accounts/:employer/finance/download-transactions', function (req, res) {
+  res.render('accounts/employer/finance/download-transactions');
+})
+
+router.get('/accounts/:employer/finance/transfers', function (req, res) {
+  res.locals.connectionRequests = req.session.connectionRequests;
+  res.render('accounts/employer/finance/transfers/index');
+})
+
+router.get('/accounts/:employer/finance/transfers/connections/requests', function (req, res) {
+  res.render('accounts/employer/finance/transfers/connections/requests/index');
+})
+
+router.get('/accounts/:employer/finance/transfers/connections/requests/start', function (req, res) {
+  res.render('accounts/employer/finance/transfers/connections/requests/start');
+})
+
+router.post('/accounts/:employer/finance/transfers/connections/requests/start', function (req, res) {  
+  let employerId = res.locals.employer.id;    
+  res.redirect('/accounts/' + employerId + '/finance/transfers/connections/requests/confirm');
+})
+
+router.get('/accounts/:employer/finance/transfers/connections/requests/confirm', function (req, res) {  
+  res.render('accounts/employer/finance/transfers/connections/requests/confirm');
+})
+
+router.post('/accounts/:employer/finance/transfers/connections/requests/confirm', function (req, res) {
+  // add the employer to ConnectionRequests
+  let connectionRequest = {
+    employer: res.locals.employer.name,
+    status: 'Approved',
+    sentOn: '30 July 2018 ',
+    receivingEmployer: 'Test Employer 1',
+    receiverAccountId: 'Test 3',
+    approvedBy: 'Test 4',
+    approvedOn: '30 July 2018'
+  };
+
+  req.session.connectionRequests.push(connectionRequest);
+  console.log(req.session.connectionRequests);
+  let employerId = res.locals.employer.id;
+  res.redirect('/accounts/' + employerId + '/finance/transfers');
+})
+
+router.get('/accounts/:employer/finance/transfers/connections/requests/:connectionRequest', function (req, res) {  
+  res.render('accounts/employer/finance/transfers/connections/requests/details');
 })
 
 // Add Apprentice Cohort
@@ -283,7 +395,7 @@ router.post('/accounts/:employer/apprentices/add/start-adding-apprentices', func
     const min = 10000;
     const max = 99999;
     let cohort_reference = 'V' + Math.floor(Math.random() * (max - min + 1)) + min;
-  
+
     let cohort = {
       training_provider: dummy_training_provider_1,
       reference: cohort_reference,
@@ -291,7 +403,7 @@ router.post('/accounts/:employer/apprentices/add/start-adding-apprentices', func
       apprentices: [],
       message: ''
     };
-  
+
     // add the cohort to session list
     req.session.cohorts.push(cohort);
     let employerId = res.locals.employer.id;
@@ -304,7 +416,7 @@ router.get('/accounts/:employer/apprentices/add/message-for-training-provider', 
 })
 
 router.post('/accounts/:employer/apprentices/add/message-for-training-provider', function (req, res) {
-  let employerId = res.locals.employer.id;  
+  let employerId = res.locals.employer.id;
   console.log(res.locals.data);
 
   let providerMessage = res.locals.data["provider-message"];

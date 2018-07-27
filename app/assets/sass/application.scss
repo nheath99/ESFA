@@ -159,7 +159,7 @@ a.block-panel {
 }
 
 .block-panel-blue {
-    background-color: #2e3391;        
+    background-color: #2e3391;
 }
 
 .block-panel-purple {
@@ -168,6 +168,31 @@ a.block-panel {
 
 .block-panel-pink {
     background-color: #d03a84;
+}
+
+.govuk-panel-small {
+    padding: 10px;
+
+    .govuk-panel__title {
+        margin-bottom: 10px;
+    }
+
+    .govuk-panel__body{
+        font-size: 25px;
+    }
+}
+
+.govuk-panel--blue {
+    background-color: #005ea5;
+    color: white;
+    .govuk-heading-m, .govuk-panel__body, .govuk-panel__body p, .govuk-list {
+        color: white;
+    }
+}
+
+.govuk-panel--purple {
+    background-color: #8e2a8d;
+    color: white;
 }
 
 .btn-secondary {
@@ -180,4 +205,25 @@ a.block-panel {
 }
 .govuk-button.btn-secondary:active, .govuk-button.btn-secondary:hover {
     background-color:#d0d3d6;
+}
+
+.form-date {    
+    .form-date-month {
+        display: inline-block;
+        margin-right: 10px;
+        .govuk-form-group {
+            width: 50px;
+        }
+    }
+
+    .form-date-year {
+        display: inline-block;
+        .govuk-form-group {
+            width: 70px;
+        }
+    }
+}
+
+.text-left {
+    text-align: left;
 }
